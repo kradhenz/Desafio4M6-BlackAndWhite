@@ -4,3 +4,23 @@ body {
     color: #fff;
 }
 
+label, input {
+    margin-bottom: 10px;
+}
+
+input, button {
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #787878;
+    color: #fff;
+}
