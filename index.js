@@ -1,15 +1,14 @@
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
+import router from './routes/router.js';
 
 const app = express();
-const port = 3000;
-
-app.get('/', (req, res) => {
-    res.send('<center><h1>👋¡Bienvenido a la página de inicio!😁</h1></center>');
-});
+const port = process.env.PORT || 3000;
 
 
-
+// Static files
+app.use(express.static('assets'));
+app.use('/', router);
 
 
 // Undefined route managament
