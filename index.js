@@ -7,9 +7,10 @@ const port = process.env.PORT || 3000;
 
 
 // Static files
-app.use(express.static('assets'));
+// 1. Ruta raíz que devuelva un HTML con el formulario para el ingreso de la URL de la imagen a tratar.
 app.use('/', router);
-
+// 2. Los estilos definidos por un archivo CSS alojado en el servidor
+app.use(express.static('assets'));
 
 // Undefined route managament
 app.get('*', (req, res) => {
