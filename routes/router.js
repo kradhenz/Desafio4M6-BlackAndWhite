@@ -14,15 +14,25 @@ router.get('/', (req, res) => {
 // 3.1. El formulario debe redirigir a otra ruta del servidor que deberá procesar la imagen tomada por la URL enviada del formulario con el paquete Jimp.
 router.get('/cargar', async (req, res) => {
     const { img } = req.query;
-    const imgJimp = await Jimp.read(img);
-    // 4. Imagen alterada almacenada con un nombre que incluya una porción de un UUID y con extensión “jpg”,
-    const imgName = `img${uuidv4().slice(0,6)}.jpg`;
-    // 3.2. La imagen procesada en escala de grises y redimensionada a unos 350px de ancho.
-    await imgJimp
-        .resize(350, Jimp.AUTO)
-        .grayscale()
-            .writeAsync(`assets/img/${imgName}`);
-    res.sendFile(path.join(__dirname, `../assets/img/${imgName}`));
+    
+    // Validar que img es una URL
+    if(!img) return res.status(400).send('Ingresa una URL de imagen');
+
+    try {
+        const imgJimp = await Jimp.read(img);
+        // 4. Imagen alterada almacenada con un nombre que incluya una porción de un UUID y con extensión “jpg”,
+        const imgName = `img${uuidv4().slice(0,6)}.jpg`;
+        // 3.2. La imagen procesada en escala de grises y redimensionada a unos 350px de ancho.
+        await imgJimp
+            .resize(350, Jimp.AUTO)
+            .grayscale()
+                .writeAsync(`assets/img/${imgName}`);
+        res.sendFile(path.join(__dirname, `../assets/img/${imgName}`));
+    } catch (error) {
+        console.error('Error al procesar la imagen:', error);
+        res.status(500).send('Error al procesar la imagen.');
+    }
+    
 });
 
 export default router;
