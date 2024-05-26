@@ -1,0 +1,21 @@
+{
+  "name": "4-blackandwhite",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Tomás Inostroza Vilches",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.1"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "jimp": "^0.22.12",
+    "uuid": "^9.0.1"
+  }
+}
